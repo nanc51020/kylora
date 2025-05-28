@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyBrand - 公式ホームページ</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Open Sans', sans-serif;
+        }
+        .hero {
+            background-image: url('https://via.placeholder.com/1200x400?text=Brand+Hero+Image');
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <!-- ヘッダー -->
+    <header class="bg-white shadow">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <img src="https://via.placeholder.com/150x50?text=MyBrand+Logo" alt="MyBrand Logo" class="h-12">
+            <nav>
+                <ul class="flex space-x-6">
+                    <li><a href="#home" class="text-gray-700 hover:text-blue-500">ホーム</a></li>
+                    <li><a href="#about" class="text-gray-700 hover:text-blue-500">ブランドについて</a></li>
+                    <li><a href="#products" class="text-gray-700 hover:text-blue-500">製品</a></li>
+                    <li><a href="#contact" class="text-gray-700 hover:text-blue-500">お問い合わせ</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ヒーローセクション -->
+    <section id="home" class="hero h-96 flex items-center justify-center text-white">
+        <div class="text-center">
+            <h1 class="text-4xl font-bold mb-4">MyBrandへようこそ</h1>
+            <p class="text-lg">高品質なハンカチとペンで、日常を彩ります。</p>
+        </div>
+    </section>
+
+    <!-- ブランドについて -->
+    <section id="about" class="py-12 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-8">MyBrandについて</h2>
+            <p class="text-lg text-gray-700 max-w-2xl mx-auto">
+                MyBrandは、品質とデザインにこだわったハンカチとペンを提供するブランドです。商標登録された独自のロゴと、細部までこだわった製品で、顧客の信頼を築いています。
+            </p>
+        </div>
+    </section>
+
+    <!-- 製品セクション -->
+    <section id="products" class="py-12 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-8">私たちの製品</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-white p-6 rounded-lg shadow">
+                    <img src="https://via.placeholder.com/300x200?text=Handkerchief" alt="Handkerchief" class="w-full h-48 object-cover mb-4">
+                    <h3 class="text-xl font-semibold">MyBrand ハンカチ</h3>
+                    <p class="text-gray-600">高品質なコットンを使用した、柔らかく吸水性に優れたハンカチ。MyBrandのロゴが刺繍され、日常使いに最適です。</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow">
+                    <img src="https://via.placeholder.com/300x200?text=Pen" alt="Pen" class="w-full h-48 object-cover mb-4">
+                    <h3 class="text-xl font-semibold">MyBrand ペン</h3>
+                    <p class="text-gray-600">滑らかな書き心地と洗練されたデザインのボールペン。MyBrandのロゴが刻印され、ビジネスシーンでも活躍。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- お問い合わせ -->
+    <section id="contact" class="py-12 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-8">お問い合わせ</h2>
+            <p class="text-lg text-gray-700 text-center max-w-2xl mx-auto">
+                MyBrandに関するご質問は、以下のメールアドレスまでご連絡ください。
+                <br><a href="mailto:info@mybrand.com" class="text-blue-500 hover:underline">info@mybrand.com</a>
+            </p>
+        </div>
+    </section>
+
+    <!-- フッター -->
+    <footer class="bg-gray-800 text-white py-6">
+        <div class="container mx-auto px-4 text-center">
+            <p>© 2025 MyBrand. All rights reserved.</p>
+            <p>商標登録番号: [あなたの商標番号]</p>
+        </div>
+    </footer>
+</body>
+</html>
