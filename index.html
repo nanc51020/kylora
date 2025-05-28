@@ -10,9 +10,8 @@
             font-family: 'Open Sans', sans-serif;
         }
         .hero {
-            background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('https://via.placeholder.com/1200x400?text=Kylora+Hero+Image');
-            background-size: cover;
-            background-position: center;
+            height: 400px; /* ヒーロー画像の高さを固定 */
+            position: relative;
         }
         .products {
             background-color: #f9f9f9;
@@ -23,7 +22,9 @@
     <!-- ヘッダー -->
     <header class="bg-white shadow">
         <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-            <a href="https://imgbb.com/"><img src="https://i.ibb.co/rfRwBSMb/image.jpg" alt="image" border="0"></a>
+            <a href="/">
+                <img src="https://i.ibb.co/rfRwBSMb/image.jpg" alt="Kylora Logo" class="h-12" style="border: none;">
+            </a>
             <nav>
                 <ul class="flex space-x-6">
                     <li><a href="#home" class="text-gray-700 hover:text-blue-500">ホーム</a></li>
@@ -35,8 +36,11 @@
     </header>
 
     <!-- トップページ (画面1) -->
-    <section id="home" class="hero h-96 flex items-center justify-center text-black">
-        <div class="text-center">
+    <section id="home" class="hero">
+        <a href="https://ibb.co/PGNZbPxV">
+            <img src="https://i.ibb.co/v4HxrT1M/Chat-GPT-Image-2025-5-28-17-18-24.png" alt="Chat-GPT-Image-2025-5-28-17-18-24" style="border: none; width: 1200px; height: 400px;" class="mx-auto">
+        </a>
+        <div class="text-center absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white">
             <h1 class="text-5xl font-bold mb-4">Kyloraへようこそ</h1>
             <p class="text-xl mb-2">洗練された日常をあなたに</p>
             <p class="text-lg">高品質な製品で、日常を彩ります。</p>
@@ -47,7 +51,7 @@
         <div class="container mx-auto px-4">
             <h2 class="text-3xl font-bold text-center mb-8">Kyloraについて</h2>
             <p class="text-lg text-gray-700 max-w-2xl mx-auto">
-                Kyloraは、品質とデザインにこだわった製品を提供するブランドです。独自のロゴと、細部までこだわったアイテムで、顧客の信頼を築いています。
+                Kyloraは、品質とデザインにこだわった製品を提供するブランドです。商標登録された独自のロゴと、細部までこだわったアイテムで、顧客の信頼を築いています。
             </p>
         </div>
     </section>
