@@ -1,0 +1,99 @@
+<script type="text/javascript">
+        var gk_isXlsx = false;
+        var gk_xlsxFileLookup = {};
+        var gk_fileData = {};
+        function filledCell(cell) {
+          return cell !== '' && cell != null;
+        }
+        function loadFileData(filename) {
+        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+            try {
+                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+                var firstSheetName = workbook.SheetNames[0];
+                var worksheet = workbook.Sheets[firstSheetName];
+
+                // Convert sheet to JSON to filter blank rows
+                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+                // Filter out blank rows (rows where all cells are empty, null, or undefined)
+                var filteredData = jsonData.filter(row => row.some(filledCell));
+
+                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
+                var headerRowIndex = filteredData.findIndex((row, index) =>
+                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
+                );
+                // Fallback
+                if (headerRowIndex === -1 || headerRowIndex > 25) {
+                  headerRowIndex = 0;
+                }
+
+                // Convert filtered JSON back to CSV
+                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
+                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+                return csv;
+            } catch (e) {
+                console.error(e);
+                return "";
+            }
+        }
+        return gk_fileData[filename] || "";
+        }
+        </script><!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kylora - 特定商取引法に基づく表記</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Open Sans', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <!-- ヘッダー -->
+    <header class="bg-white shadow">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <img src="https://i.ibb.co/SDxJhzG3/image.jpg" alt="Kylora Logo" class="h-12 w-36" style="border: none;">
+            <nav>
+                <ul class="flex space-x-6">
+                    <li><a href="index.html" class="text-gray-700 hover:text-blue-500">ホーム</a></li>
+                    <li><a href="index.html#products" class="text-gray-700 hover:text-blue-500">製品</a></li>
+                    <li><a href="index.html#contact" class="text-gray-700 hover:text-blue-500">お問い合わせ</a></li>
+                    <li><a href="privacy.html" class="text-gray-700 hover:text-blue-500">プライバシー</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 特定商取引法に基づく表記 -->
+    <section class="py-12 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-8">特定商取引法に基づく表記</h2>
+            <div class="text-lg text-gray-700 max-w-2xl mx-auto">
+                <p class="mb-4"><strong>事業者名:</strong> 株式会社Kylora</p>
+                <p class="mb-4"><strong>代表者名:</strong> 山田太郎（仮名）</p>
+                <p class="mb-4"><strong>所在地:</strong> 〒100-0001 東京都千代田区千代田1-1-1（仮住所）</p>
+                <p class="mb-4"><strong>電話番号:</strong> 03-1234-5678（仮番号）</p>
+                <p class="mb-4"><strong>メールアドレス:</strong> <a href="mailto:info@kylora.com" class="text-blue-500 hover:underline">info@kylora.com</a></p>
+                <p class="mb-4"><strong>商品の価格:</strong> 商品ページに記載（現在は販売準備中）</p>
+                <p class="mb-4"><strong>送料:</strong> 全国一律500円（税込）、10,000円以上購入で無料</p>
+                <p class="mb-4"><strong>支払い方法:</strong> クレジットカード、銀行振込（準備中）</p>
+                <p class="mb-4"><strong>返品・交換:</strong> 商品到着後7日以内にご連絡ください。不良品の場合は当社負担で交換対応いたします。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- フッター -->
+    <footer class="bg-gray-800 text-white py-6">
+        <div class="container mx-auto px-4 text-center">
+            <p>© 2025 Kylora. All rights reserved.</p>
+            <p>商標出願番号: 商願2025-016369（審査中）</p>
+            <p>
+                <a href="privacy.html" class="text-white hover:underline">プライバシーポリシー</a> | 
+                <a href="terms.html" class="text-white hover:underline">特定商取引法に基づく表記</a>
+            </p>
+        </div>
+    </footer>
+</body>
+</html>
