@@ -1,43 +1,4 @@
-<script type="text/javascript">
-        var gk_isXlsx = false;
-        var gk_xlsxFileLookup = {};
-        var gk_fileData = {};
-        function filledCell(cell) {
-          return cell !== '' && cell != null;
-        }
-        function loadFileData(filename) {
-        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
-            try {
-                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
-                var firstSheetName = workbook.SheetNames[0];
-                var worksheet = workbook.Sheets[firstSheetName];
-
-                // Convert sheet to JSON to filter blank rows
-                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
-                // Filter out blank rows (rows where all cells are empty, null, or undefined)
-                var filteredData = jsonData.filter(row => row.some(filledCell));
-
-                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
-                var headerRowIndex = filteredData.findIndex((row, index) =>
-                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
-                );
-                // Fallback
-                if (headerRowIndex === -1 || headerRowIndex > 25) {
-                  headerRowIndex = 0;
-                }
-
-                // Convert filtered JSON back to CSV
-                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
-                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
-                return csv;
-            } catch (e) {
-                console.error(e);
-                return "";
-            }
-        }
-        return gk_fileData[filename] || "";
-        }
-        </script><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
@@ -54,10 +15,10 @@
     <!-- ヘッダー -->
     <header class="bg-white shadow">
         <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-            <img src="https://i.ibb.co/SDxJhzG3/image.jpg" alt="Kylora Logo" class="h-12 w-36" style="border: none;">
+            <img src="https://i.ibb.co/Kp0N2d9N/Chat-GPT-Image-2025-5-29-11-21-31.png" alt="Kylora Logo" class="h-12 w-36" style="border: none; background-color: white;">
             <nav>
                 <ul class="flex space-x-6">
-                    <li><a href="index.html" class="text-gray-700 hover:text-blue-500">ホーム</a></li>
+                    <li><a href="index.html#home" class="text-gray-700 hover:text-blue-500">ホーム</a></li>
                     <li><a href="index.html#products" class="text-gray-700 hover:text-blue-500">製品</a></li>
                     <li><a href="index.html#contact" class="text-gray-700 hover:text-blue-500">お問い合わせ</a></li>
                     <li><a href="privacy.html" class="text-gray-700 hover:text-blue-500">プライバシー</a></li>
@@ -66,27 +27,19 @@
         </div>
     </header>
 
-    <!-- プライバシーポリシー -->
+    <!-- プライバシーポリシー内容 -->
     <section class="py-12 bg-white">
         <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center mb-8">プライバシーポリシー</h2>
-            <div class="text-lg text-gray-700 max-w-2xl mx-auto">
-                <p class="mb-4">
-                    Kylora（以下「当社」）は、お客様の個人情報を適切に保護することを重視しています。本プライバシーポリシーは、当社が収集する情報とその利用方法について説明します。
-                </p>
-                <h3 class="text-xl font-semibold mb-2">1. 収集する情報</h3>
-                <p class="mb-4">
-                    当社は、お客様が当サイトを利用する際にお名前、メールアドレスなどの個人情報を収集することがあります。これらの情報は、お問い合わせ対応やサービス向上のために使用されます。
-                </p>
-                <h3 class="text-xl font-semibold mb-2">2. 情報の利用</h3>
-                <p class="mb-4">
-                    収集した情報は、製品の発送、カスタマーサポート、マーケティング活動に使用されます。第三者への提供は、法令に基づく場合を除き行いません。
-                </p>
-                <h3 class="text-xl font-semibold mb-2">3. お問い合わせ</h3>
-                <p>
-                    プライバシーポリシーに関するご質問は、<a href="mailto:info@kylora.com" class="text-blue-500 hover:underline">info@kylora.com</a> までご連絡ください。
-                </p>
-            </div>
+            <h1 class="text-3xl font-bold text-center mb-8">プライバシーポリシー</h1>
+            <p class="text-lg text-gray-700 max-w-2xl mx-auto">
+                Kylora（以下、「当社」）は、お客様の個人情報の保護を重視し、以下のプライバシーポリシーに基づいて適切に管理・運用いたします。
+            </p>
+            <ul class="list-disc list-inside mt-4 text-lg text-gray-700 max-w-2xl mx-auto">
+                <li>収集する個人情報：お名前、メールアドレス、住所など。</li>
+                <li>利用目的：商品の配送、問い合わせ対応、マーケティング活動。</li>
+                <li>第三者提供：法令に基づく場合を除き、第三者に提供いたしません。</li>
+                <li>お問い合わせ：個人情報の確認・削除は info@kylora.com までご連絡ください。</li>
+            </ul>
         </div>
     </section>
 
